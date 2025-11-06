@@ -28,6 +28,9 @@
 \DeclareVoidOption{biber}{\ekv{bibend=biber}}
 \DeclareVoidOption{bibtex}{\ekv{bibend=bibtex}}
 
+% Allow disabling biblatex entirely to use classic BibTeX commands
+\DeclareBoolOption[false]{classicbib}
+
 
 \DeclareStringOption[ctexfont]{chinesefont}
 \DeclareVoidOption{ctexfont}{\ekv{chinesefont=ctexfont}}
@@ -193,10 +196,14 @@
 }{\relax}
 
 
-\RequirePackage[
-  backend=\ELEGANT@bibend,
-  citestyle=\ELEGANT@citestyle,
-  bibstyle=\ELEGANT@bibstyle]{biblatex}
+% Load biblatex only when not using classic BibTeX
+\ifELEGANT@classicbib\relax
+\else
+  \RequirePackage[
+    backend=\ELEGANT@bibend,
+    citestyle=\ELEGANT@citestyle,
+    bibstyle=\ELEGANT@bibstyle]{biblatex}
+\fi
 
 \RequirePackage{appendix}
 

@@ -1,6 +1,7 @@
 %!TEX program = pdflatex
 % Full chain: pdflatex -> biber/bibtex -> pdflatex -> pdflatex
-\documentclass[11pt,en]{elegantpaper}
+% Use classic BibTeX instead of biblatex via class option [classicbib]
+\documentclass[11pt,en,classicbib]{elegantpaper}
 
 \title{ElegantPaper: An Elegant \LaTeX{} Template for Working Papers}
 \author{Author1 \\ Institute1 \and Author2 \\ Institute2}
@@ -13,7 +14,8 @@
 \usepackage{array}
 \newcommand{\ccr}[1]{\makecell{{\color{#1}\rule{1cm}{1cm}}}}
 
-\addbibresource[location=local]{reference.bib} % reference file
+% Using BibTeX backend now (see documentclass option above)
+% \addbibresource[location=local]{refs.bib} % reference file (biblatex) — disabled
 \begin{document}
 
 \maketitle
@@ -75,8 +77,8 @@ Default \LaTeX{} commands and environments are all the same in this template\foo
 
 
 \subsection{Bibliography}
-
-This template uses biblatex to generate the bibliography, the default citestyle and bibliography style are both \lstinline{numeric}. Let's take a glance at the citation effect. ~\cite{en1} use data from a major peer-to-peer lending \cite{en3} marketplace in China to study whether female and male investors evaluate loan performance differently \parencite{en2}. 
+This template uses biblatex to generate the bibliography, the default citestyle and bibliography style are both \lstinline{numeric}. 
+Let's take a glance at the citation effect. TEST ~\cite{Kong24isrr_submitted} use data from a major peer-to-peer lending TEST \cite{Silver10nips} marketplace in China to study whether female and male investors evaluate loan performance differently TEST \cite{Zhitnikov22ai}. 
 
 If you want to use biblatex, you must create a file named \lstinline{reference.bib}, add bib items (from Google Scholar, Mendeley, EndNote, and etc.) to \lstinline{reference.bib} file, then cite the bibkey in the \lstinline{tex} file. The biber will automatically generate the bibliography for the reference you cited.
 
@@ -148,7 +150,9 @@ Thank \href{https://github.com/sikouhjw}{sikouhjw} and \href{https://github.com/
 
 
 
-\printbibliography[heading=bibintoc, title=\ebibname]
+% Bibliography (BibTeX)
+\bibliographystyle{ieeetr}
+\bibliography{refs}
 
 \appendix
 %\appendixpage
